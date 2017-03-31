@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pozadina"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:id="@+id/pogled"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_weight="0.41"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        android:weightSum="1"
+        tools:ignore="InefficientWeight">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
+            app:srcCompat="@mipmap/ic_launcher_round"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="NestedWeights">
+
+            <TextView
+                android:id="@+id/textViewImePrezime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="TextView"
+                android:textColor="@color/bijela"
+                android:textSize="@dimen/naslov"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textViewGodina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="TextView"
+                android:textColor="@color/bijela"
+                android:textSize="@dimen/tekst"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textViewMjesto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="TextView"
+                android:textColor="@color/bijela"
+                android:textSize="@dimen/tekst"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textViewSpol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="TextView"
+                android:textColor="@color/bijela"
+                android:textSize="@dimen/tekst"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textViewImdb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:padding="2dp"
+                android:text="TextView"
+                android:textColor="@color/bijela"
+                android:textColorLink="@color/bijela"
+                android:textSize="@dimen/tekst"
+                tools:autoLink="web"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textViewBiografija"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.48"
+            android:lines="13"
+            android:maxLines="50"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:paddingEnd="3dp"
+            android:paddingStart="3dp"
+            android:scrollbars="horizontal"
+            android:textAlignment="inherit"
+            android:textColor="@color/bijela"
+            android:textSize="@dimen/tekst"
+            tools:ignore="ObsoleteLayoutParam,ScrollViewSize" />
+    </ScrollView>
+
+
+    <ImageButton
+        android:id="@+id/imageButtonShare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@null"
+        app:srcCompat="@drawable/share"
+        tools:ignore="ContentDescription" />
+
+</LinearLayout>

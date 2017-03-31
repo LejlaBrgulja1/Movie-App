@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#14171c</color>
+    <color name="colorPrimaryDark">#14171c</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="prva">#505d72</color>
+    <color name="prvaf">#590321</color>
+    <color name="prvam">#182342</color>
+    <color name="druga">#14171c</color>
+    <color name="bijela">#f0f0f0</color>
+</resources>

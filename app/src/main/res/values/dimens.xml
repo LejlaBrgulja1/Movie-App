@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="glavna_margina">10dp</dimen>
+    <dimen name="button_text">20sp</dimen>
+    <dimen name="naslov">20sp</dimen>
+    <dimen name="podnaslov">15sp</dimen>
+    <dimen name="tekst">15sp</dimen>
+
+</resources>
