@@ -1,29 +1,25 @@
-# README #
++++++ Lejla Brgulja
 
-This README would normally document whatever steps are necessary to get your application up and running.
++++++ 17526
 
-### What is this repository for? ###
++++++ 2016/17
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
++++++ RMA
 
-### How do I get set up? ###
++++++
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
++++++ Spirala 1
 
-### Contribution guidelines ###
++++++ Urađeno: 
 
-* Writing tests
-* Code review
-* Other guidelines
++++++ Zadatak 1 - cijeli zadatak je uradjen
 
-### Who do I talk to? ###
++++++ Zadatak 2 - cijeli zadatak je uradjen
 
-* Repo owner or admin
-* Other community or team contact
++++++ Zadatak 3 - cijeli zadatak je uradjen
+
++++++ Zadatak 4 - cijeli zadatak je uradjen
+
++++++ Nije urađeno:
+
++++++ sve je uradjeno
