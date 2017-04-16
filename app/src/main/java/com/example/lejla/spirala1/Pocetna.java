@@ -1,54 +1,139 @@
 package com.example.lejla.spirala1;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class Pocetna extends AppCompatActivity {
+public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick {
 
-    Button dugmeGlumci;
-    Button dugmeReziseri;
-    Button dugmeZanrovi;
-    ListView lista;
+
     ArrayList<Glumac> glumci;
+    ArrayList<Reziser> reziseri;
+    ArrayList<Zanr> zanrovi;
+    Podaci p=new Podaci();
+    Boolean siriL=false;
+    Boolean bosanski=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pocetna);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
 
-        dugmeGlumci = (Button)findViewById(R.id.button1);
-        dugmeReziseri = (Button)findViewById(R.id.button2);
-        dugmeZanrovi = (Button)findViewById(R.id.button3);
+        glumci=p.getGlumci();
+        reziseri = p.getReziseri();
+        zanrovi = p.getZanrovi();
+        FragmentManager fm=getFragmentManager();
+        FrameLayout sirokiDugmici = (FrameLayout)findViewById(R.id.dugmiciSirokiFrameLayout);
 
-        lista = (ListView)findViewById(R.id.lista_elemenata);
-        glumci=new ArrayList<Glumac>();
-        Glumac gm1= new Glumac("Johnny","Depp","1963","/","Owensboro, Kentucky, USA","7.4","glumac1","m","http://www.imdb.com/name/nm0000136","He was born John Christopher Depp II in Owensboro, Kentucky, on June 9, 1963, to Betty Sue (Wells), who worked as a waitress, and John Christopher Depp, a civil engineer.");
-        Glumac gm2= new Glumac("Paul","Walker","1973","2013","Glendale, California, USA","6.8","glumac2","m","http://www.imdb.com/name/nm0908094","Paul William Walker IV was born in Glendale, California. He grew up together with his brothers, Caleb and Cody, and sisters, Ashlie and Amie. Their parents, Paul William Walker III, a sewer contractor, and Cheryl (Crabtree) Walker, a model, separated around September 2004. ");
-        Glumac gm3= new Glumac("Hugh","Laurie","1959","/","Oxford, Oxfordshire, England, UK","8.2","glumac3","m","http://www.imdb.com/name/nm0491402","Hugh was born in Oxford, England on June 11, 1959, to Patricia (Laidlaw) and William George Ranald Mundell \"Ran\" Laurie, a doctor, both of Scottish descent. He was educated at Eton and Cambridge. Son of an Olympic gold medalist in the sport, he rowed for the England youth team (1977) and for Cambridge (1980).Hugh was born in Oxford, England on June 11, 1959, to Patricia (Laidlaw) and William George Ranald Mundell \"Ran\" Laurie, a doctor, both of Scottish descent. He was educated at Eton and Cambridge. Son of an Olympic gold medalist in the sport, he rowed for the England youth team (1977) and for Cambridge (1980).Hugh was born in Oxford, England on June 11, 1959, to Patricia (Laidlaw) and William George Ranald Mundell \"Ran\" Laurie, a doctor, both of Scottish descent. He was educated at Eton and Cambridge. Son of an Olympic gold medalist in the sport, he rowed for the England youth team (1977) and for Cambridge (1980).Hugh was born in Oxford, England on June 11, 1959, to Patricia (Laidlaw) and William George Ranald Mundell \"Ran\" Laurie, a doctor, both of Scottish descent. He was educated at Eton and Cambridge. Son of an Olympic gold medalist in the sport, he rowed for the England youth team (1977) and for Cambridge (1980).");
+        if(sirokiDugmici!=null) {
+            siriL=true;
+            for(int i = 0; i < fm.getBackStackEntryCount(); i++){
+                fm.popBackStack();
+            }
+            FragmentDugmad500dp fd = (FragmentDugmad500dp) fm.findFragmentById(R.id.dugmiciSirokiFrameLayout);
+            if (fd == null) {
+                fd = new FragmentDugmad500dp();
+                fm.beginTransaction().replace(R.id.dugmiciSirokiFrameLayout, fd).commit();
+            }
 
-        Glumac gf1= new Glumac("Sofia","Vergara","1972","/","Barranquilla, Colombia","8.5","glumica1","f","http://www.imdb.com/name/nm0005527","Sofía Margarita Vergara Vergara was born and raised in Barranquilla, Colombia. Her mother, Margarita Vergara Dávila de Vergara, is a housewife. Her father, Julio Enrique Vergara Robayo, provides cattle to the meat industry. ");
-        Glumac gf2= new Glumac("Sandra","Oh","1971","/","Nepean, Ontario, Canada","7.6","glumica2","f","http://www.imdb.com/name/nm0644897","Sandra Oh was born to Korean parents in the Ottawa suburb of Nepean, Ontario, Canada. Her father, Oh Junsu, a businessman, and her mother, Oh Young-nam, a biochemist, were married in Seoul, South Korea. They both attended graduate school at the University of Toronto.");
-        Glumac gf3= new Glumac("Kaley","Cuoco","1985","/","Camarillo, California, USA","6.7","glumica3","f","http://www.imdb.com/name/nm0192505","Kaley Christine Cuoco was born in Camarillo, California, to Layne Ann (Wingate) and Gary Carmine Cuoco, a realtor. She is of Italian (father) and German and English (mother) descent.Cuoco was home-schooled, and lives in Ventura County, California with her family. ");
+            FragmentGlumciLista fgl;
+            fgl=(FragmentGlumciLista)fm.findFragmentById(R.id.lijeviSirokiFrameLayout);
+            if(fgl==null) {
+                fgl=new FragmentGlumciLista();
+                Bundle argumenti = new Bundle();
+                argumenti.putParcelableArrayList("Glista", glumci);
+                fgl.setArguments(argumenti);
+                fm.beginTransaction().replace(R.id.lijeviSirokiFrameLayout,fgl).commit();
+            }else {
+                fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+            FragmentOGlumcu fog;
+            fog=(FragmentOGlumcu) fm.findFragmentById(R.id.desniSirokiFrameLayout);
+            if(fog==null) {
+                Bundle arguments=new Bundle();
+                arguments.putParcelable("glumac",glumci.get(0));
+                arguments.putString("layout","siroki");
+                fog = new FragmentOGlumcu();
+                fog.setArguments(arguments);
+                fm.beginTransaction().replace(R.id.desniSirokiFrameLayout,fog).commit();
 
-        glumci.add(gm1);
-        glumci.add(gf1);
-        glumci.add(gm2);
-        glumci.add(gf2);
-        glumci.add(gm3);
-        glumci.add(gf3);
+            }else {
+                fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+        }else {
+            for(int i = 0; i < fm.getBackStackEntryCount(); i++){
+                fm.popBackStack();
+            }
+            siriL=false;
+            FragmentDugmad fd = (FragmentDugmad) fm.findFragmentById(R.id.MjestoIznad);
+            if (fd == null) {
+                fd = new FragmentDugmad();
+                fm.beginTransaction().replace(R.id.MjestoIznad, fd).commit();
+            }
+            FragmentGlumciLista FGL = (FragmentGlumciLista) fm.findFragmentById(R.id.MjestoIspod);
+            if (FGL == null) {
+                FGL = new FragmentGlumciLista();
+                Bundle argumentii = new Bundle();
+                argumentii.putParcelableArrayList("Glista", glumci);
+                FGL.setArguments(argumentii);
+                fm.beginTransaction().replace(R.id.MjestoIspod, FGL).commit();
+            } else {
+                fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+        }
 
-        final GlumacAdapter adapter = new GlumacAdapter(this,glumci);
+    }
+
+    @Override
+    public void onItemClicked(int pos){
+
+        Bundle arguments=new Bundle();
+        arguments.putParcelable("glumac",glumci.get(pos));
+        FragmentOGlumcu fd = new FragmentOGlumcu();
+
+
+
+        if(siriL) {
+            arguments.putString("layout","siroki");
+            fd.setArguments(arguments);
+            getFragmentManager().beginTransaction().replace(R.id.desniSirokiFrameLayout, fd).addToBackStack(null).commit();
+        }else{
+            fd.setArguments(arguments);
+            getFragmentManager().beginTransaction().replace(R.id.MjestoIspod, fd).addToBackStack(null).commit();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(siriL) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+    }
+}
+
+
+/*
+final GlumacAdapter adapter = new GlumacAdapter(this,glumci);
         lista.setAdapter(adapter);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,6 +168,4 @@ public class Pocetna extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-    }
-}
+        */

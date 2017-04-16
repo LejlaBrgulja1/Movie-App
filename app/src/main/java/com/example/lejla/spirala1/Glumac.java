@@ -4,7 +4,10 @@ package com.example.lejla.spirala1;
  * Created by Lejla on 21.03.2017..
  */
 
-public class Glumac {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Glumac implements Parcelable {
     private String ime;
     private String prezime;
     private String biografija;
@@ -17,6 +20,19 @@ public class Glumac {
     private String imbdLink;
     private String rating;
 
+    protected Glumac(Parcel in){
+        this.ime = in.readString();
+        this.prezime = in.readString();
+        this.biografija = in.readString();
+        this.rating = in.readString();
+        this.godinaRodjenja = in.readString();
+        this.godinaSmrti = in.readString();
+        this.mjestoRodjenja = in.readString();
+        this.slika = in.readString();
+        this.spol = in.readString();
+        this.imbdLink = in.readString();
+    }
+
     public Glumac(String ime, String prezime, String godinaRodjenja, String godinaSmrti, String mjestoRodjenja, String rating, String slika, String spol, String imbdLink, String biografija) {
         this.ime = ime;
         this.prezime = prezime;
@@ -28,6 +44,38 @@ public class Glumac {
         this.slika = slika;
         this.spol = spol;
         this.imbdLink = imbdLink;
+    }
+
+    public static final Creator<Glumac> CREATOR =  new Creator<Glumac>() {
+        @Override
+        public Glumac createFromParcel(Parcel in) {
+            return new Glumac(in);
+        }
+
+        @Override
+        public Glumac[] newArray(int size) {
+            return new Glumac[size];
+        }
+    };
+
+    @Override
+    public int describeContents(){
+        return 0;
+    }
+    @Override
+    public void writeToParcel(Parcel dest, int flags){
+        dest.writeString(ime);
+        dest.writeString(prezime);
+        dest.writeString(biografija);
+        dest.writeString(rating);
+        dest.writeString(godinaRodjenja);
+        dest.writeString(godinaSmrti);
+        dest.writeString(mjestoRodjenja);
+        dest.writeString(slika);
+        dest.writeString(spol);
+        dest.writeString(imbdLink);
+
+
     }
 
     public void setIme(String ime) {

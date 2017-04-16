@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+        android:id="@+id/grid_dugmici"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="top|center">
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="end|fill"
+            android:text="@string/button1_pocetna"
+            android:textColor="@color/bijela"
+            android:textSize="@dimen/button_text" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/button2"
+            android:layout_gravity="center|fill"
+            android:text="@string/button2_pocetna"
+            android:textSize="@dimen/button_text"
+            android:textColor="@color/bijela"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/button3"
+            android:layout_gravity="start|fill"
+            android:text="@string/button3_pocetna"
+            android:textSize="@dimen/button_text"
+            android:textColor="@color/bijela"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <ImageView
+            android:id="@+id/imageFlag"
+            android:layout_width="45dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/zastava"
+            tools:ignore="ContentDescription" />
+
+</LinearLayout>

@@ -17,8 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".oGlumcu"></activity>
-        <activity android:name=".PocetnaZanrovi"></activity>
-        <activity android:name=".PocetnaReziseri"></activity>
     </application>
 
 </manifest>

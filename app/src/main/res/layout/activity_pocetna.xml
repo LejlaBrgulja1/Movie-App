@@ -4,52 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@drawable/gradijent_pozadina"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+    android:layout_height="match_parent">
 
-
-    <GridLayout
-        android:id="@+id/grid_dugmici"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_gravity="top|center"
-        android:columnCount="3">
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_column="0"
-            android:layout_gravity="end|fill"
-            android:layout_row="0"
-            android:text="@string/button1_pocetna"
-            android:textSize="@dimen/button_text"
-            android:textColor="@color/bijela"
-            style="?android:attr/buttonBarButtonStyle" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_column="1"
-            android:layout_gravity="center|fill"
-            android:layout_row="0"
-            android:text="@string/button2_pocetna"
-            android:textSize="@dimen/button_text"
-            android:textColor="@color/bijela"
-            style="?android:attr/buttonBarButtonStyle" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_column="2"
-            android:layout_gravity="start|fill"
-            android:layout_row="0"
-            android:text="@string/button3_pocetna"
-            android:textSize="@dimen/button_text"
-            android:textColor="@color/bijela"
-            style="?android:attr/buttonBarButtonStyle" />
-
-    </GridLayout>
-
-    <ListView
-        android:id="@+id/lista_elemenata"
+        android:background="#18191c"
+        android:id="@+id/MjestoIznad"></FrameLayout>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom|center" />
+        android:id="@+id/MjestoIspod"></FrameLayout>
+
 </LinearLayout>

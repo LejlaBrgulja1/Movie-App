@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Spirala2Zadaca</string>
+    <string name="button1_pocetna">GLUMCI</string>
+    <string name="button2_pocetna">REŽISERI</string>
+    <string name="button3_pocetna">ŽANROVI</string>
+    <string name="button1_500dp_layout">GLUMCI</string>
+    <string name="button2_500dp_layout">OSTALO</string>
+    <drawable name="zastava">@drawable/bih_flag</drawable>
+    <string name="button_share">PODIJELI</string>
+    <string name="tekst_dijeljenja">Podijeli preko</string>
+    <string name="spol">Spol: </string>
+</resources>

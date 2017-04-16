@@ -5,5 +5,7 @@
     <dimen name="naslov">20sp</dimen>
     <dimen name="podnaslov">15sp</dimen>
     <dimen name="tekst">15sp</dimen>
+    <dimen name="unutrasnja_margina_fragment">5dp</dimen>
+    <dimen name="vanjska_margina_fragment">5dp</dimen>
 
 </resources>

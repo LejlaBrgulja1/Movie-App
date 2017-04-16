@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pozadina"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    />
+                <Button
+                    android:id="@+id/buttonShare"
+                    android:layout_width="120dp"
+                    android:layout_height="25dp"
+                    android:background="#18191c"
+                    android:textColor="@color/bijela"
+                    android:text="@string/button_share"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal"
+                android:layout_marginStart="4dp"
+                android:orientation="vertical"
+                android:layout_weight="3">
+                <TextView
+                    android:id="@+id/textViewImePrezime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="TextView"
+                    android:textColor="@color/bijela"
+                    android:textSize="@dimen/naslov"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/textViewGodina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="TextView"
+                    android:textColor="@color/bijela"
+                    android:textSize="@dimen/tekst"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/textViewMjesto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="TextView"
+                    android:textColor="@color/bijela"
+                    android:textSize="@dimen/tekst"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/textViewSpol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="TextView"
+                    android:textColor="@color/bijela"
+                    android:textSize="@dimen/tekst"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/textViewImdb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:linksClickable="true"
+                    android:padding="2dp"
+                    android:text="TextView"
+                    android:textColor="@color/bijela"
+                    android:textColorLink="@color/bijela"
+                    android:textSize="@dimen/tekst"
+                    tools:autoLink="web"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/textViewBiografija"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="20dp"
+            android:lines="13"
+            android:maxLines="50"
+            android:paddingBottom="0dp"
+            android:paddingEnd="3dp"
+            android:paddingStart="3dp"
+            android:paddingTop="0dp"
+            android:scrollbars="horizontal"
+            android:textColor="@color/bijela"
+            android:textSize="@dimen/tekst"
+            tools:ignore="ObsoleteLayoutParam,ScrollViewSize" />
+
+    </LinearLayout>
+</ScrollView>

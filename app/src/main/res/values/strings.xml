@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">Spirala1</string>
-    <string name="button1_pocetna">GLUMCI</string>
-    <string name="button2_pocetna">REŽISERI</string>
-    <string name="button3_pocetna">ŽANROVI</string>
+    <string name="app_name">Spirala2Homework</string>
+    <string name="button1_pocetna">ACTORS</string>
+    <string name="button2_pocetna">DIRECTORS</string>
+    <string name="button3_pocetna">GENRES</string>
+    <string name="button1_500dp_layout">ACTORS</string>
+    <string name="button2_500dp_layout">OTHER</string>
+    <drawable name="zastava">@drawable/uk_flag</drawable>
+    <string name="button_share">SHARE</string>
+    <string name="tekst_dijeljenja">Share via</string>
+    <string name="spol">Sex: </string>
 </resources>
