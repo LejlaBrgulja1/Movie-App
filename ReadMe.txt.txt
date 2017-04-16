@@ -12,6 +12,7 @@
 +++++ Nije uraðeno:
 +++++ sve je uradjeno
 +++++
++++++
 +++++ Spirala 2
 +++++ Uraðeno: 
 +++++ Zadatak 1 - cijeli zadatak je uradjen
