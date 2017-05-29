@@ -10,7 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+
+import static com.example.lejla.spirala1.R.id.imageView;
 
 /**
  * Created by Lejla on 21.03.2017..
@@ -35,15 +39,15 @@ public class GlumacAdapter extends ArrayAdapter<Glumac> {
         TextView tvGodina = (TextView)posebni_red.findViewById(R.id.textViewGodina);
         TextView tvMjesto = (TextView)posebni_red.findViewById(R.id.textViewMjesto);
         TextView tvRating = (TextView)posebni_red.findViewById(R.id.textViewRating);
-        ImageView slika = (ImageView) posebni_red.findViewById(R.id.imageView);
+        ImageView slika = (ImageView) posebni_red.findViewById(imageView);
 
         tvIme_Prezime.setText(glumac.getIme()+" " + glumac.getPrezime());
         tvGodina.setText(glumac.getGodinaRodjenja());
         tvMjesto.setText(glumac.getMjestoRodjenja());
         tvRating.setText(glumac.getRating());
 
-
-        slika.setImageResource(getContext().getResources().getIdentifier("com.example.lejla.spirala1:drawable/" + glumac.getSlika(), null, null));
+        Picasso.with(getContext()).load(glumac.getSlika()).into((ImageView)posebni_red.findViewById(imageView));
+      //  slika.setImageResource(getContext().getResources().getIdentifier("com.example.lejla.spirala1:drawable/" + glumac.getSlika(), null, null));
 
 
 

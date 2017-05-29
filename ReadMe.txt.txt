@@ -10,7 +10,7 @@
 +++++ Zadatak 3 - cijeli zadatak je uradjen
 +++++ Zadatak 4 - cijeli zadatak je uradjen
 +++++ Nije urağeno:
-+++++ sve je uradjeno
++++++ sve je urağeno
 +++++
 +++++
 +++++ Spirala 2
@@ -19,4 +19,15 @@
 +++++ Zadatak 2 - cijeli zadatak je uradjen
 +++++ Zadatak 3 - cijeli zadatak je uradjen
 +++++ Nije urağeno:
-+++++ sve je uradjeno
++++++ sve je urağeno
++++++
++++++
++++++ Spirala 3
++++++ Urağeno: 
++++++ Zadatak 1 - cijeli zadatak je uradjen
++++++ Zadatak 2 - cijeli zadatak je uradjen
++++++ Zadatak 3 - cijeli zadatak je uradjen
++++++ Zadatak 4 - cijeli zadatak je uradjen
++++++ Zadatak 5 - cijeli zadatak je uradjen
++++++ Nije urağeno:
++++++ sve je urağeno

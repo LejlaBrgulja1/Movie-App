@@ -1,49 +1,67 @@
 package com.example.lejla.spirala1;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick {
+public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick, FragmentGlumciLista.StaviPrvogGlumca {
 
+
+    public void setGlumci(ArrayList<Glumac> glumci) {
+        this.glumci = glumci;
+    }
+
+    public void setReziseri(ArrayList<Reziser> reziseri) {
+        this.reziseri = reziseri;
+    }
+
+    public void setZanrovi(ArrayList<Zanr> zanrovi) {
+        this.zanrovi = zanrovi;
+    }
 
     ArrayList<Glumac> glumci;
     ArrayList<Reziser> reziseri;
     ArrayList<Zanr> zanrovi;
-    Podaci p=new Podaci();
-    Boolean siriL=false;
-    Boolean bosanski=true;
+    Podaci p = new Podaci();
+    Boolean siriL = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pocetna);
-
-
-        glumci=p.getGlumci();
+        glumci = p.getGlumci();
         reziseri = p.getReziseri();
         zanrovi = p.getZanrovi();
-        FragmentManager fm=getFragmentManager();
-        FrameLayout sirokiDugmici = (FrameLayout)findViewById(R.id.dugmiciSirokiFrameLayout);
 
-        if(sirokiDugmici!=null) {
-            siriL=true;
-            for(int i = 0; i < fm.getBackStackEntryCount(); i++){
+        FragmentManager fm = getFragmentManager();
+        FrameLayout sirokiDugmici = (FrameLayout) findViewById(R.id.dugmiciSirokiFrameLayout);
+
+        if (sirokiDugmici != null) {
+            siriL = true;
+            //      Fragment f = getFragmentManager().popBackStack();
+            for (int i = 0; i < fm.getBackStackEntryCount(); i++) {
                 fm.popBackStack();
             }
             FragmentDugmad500dp fd = (FragmentDugmad500dp) fm.findFragmentById(R.id.dugmiciSirokiFrameLayout);
@@ -53,67 +71,81 @@ public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick
             }
 
             FragmentGlumciLista fgl;
-            fgl=(FragmentGlumciLista)fm.findFragmentById(R.id.lijeviSirokiFrameLayout);
-            if(fgl==null) {
-                fgl=new FragmentGlumciLista();
+            fgl = (FragmentGlumciLista) fm.findFragmentById(R.id.lijeviSirokiFrameLayout);
+            if (fgl == null) {
+                fgl = new FragmentGlumciLista();
                 Bundle argumenti = new Bundle();
-                argumenti.putParcelableArrayList("Glista", glumci);
+                //  argumenti.putParcelableArrayList("Glista", glumci);
+                argumenti.putParcelableArrayList("Glista", FragmentGlumciLista.getGlumci());
                 fgl.setArguments(argumenti);
-                fm.beginTransaction().replace(R.id.lijeviSirokiFrameLayout,fgl).commit();
-            }else {
+                fm.beginTransaction().replace(R.id.lijeviSirokiFrameLayout, fgl).commit();
+            } else {
                 fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
             FragmentOGlumcu fog;
-            fog=(FragmentOGlumcu) fm.findFragmentById(R.id.desniSirokiFrameLayout);
-            if(fog==null) {
-                Bundle arguments=new Bundle();
-                arguments.putParcelable("glumac",glumci.get(0));
-                arguments.putString("layout","siroki");
+            fog = (FragmentOGlumcu) fm.findFragmentById(R.id.desniSirokiFrameLayout);
+            if (fog == null && FragmentGlumciLista.getGlumci()!=null) {
+                Bundle arguments = new Bundle();
+                //  arguments.putParcelable("glumac",glumci.get(0));
+                if(FragmentGlumciLista.getGlumci().size()!=0)arguments.putParcelable("glumac", FragmentGlumciLista.getGlumci().get(0));
+                arguments.putString("layout", "siroki");
                 fog = new FragmentOGlumcu();
                 fog.setArguments(arguments);
-                fm.beginTransaction().replace(R.id.desniSirokiFrameLayout,fog).commit();
+                fm.beginTransaction().replace(R.id.desniSirokiFrameLayout, fog).commit();
 
-            }else {
+            } else {
                 fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
-        }else {
-            for(int i = 0; i < fm.getBackStackEntryCount(); i++){
+        } else {
+
+
+            for (int i = 0; i < fm.getBackStackEntryCount(); i++) {
                 fm.popBackStack();
             }
-            siriL=false;
+            siriL = false;
+
+
             FragmentDugmad fd = (FragmentDugmad) fm.findFragmentById(R.id.MjestoIznad);
             if (fd == null) {
                 fd = new FragmentDugmad();
                 fm.beginTransaction().replace(R.id.MjestoIznad, fd).commit();
             }
-            FragmentGlumciLista FGL = (FragmentGlumciLista) fm.findFragmentById(R.id.MjestoIspod);
+     /*       FragmentGlumciLista FGL = (FragmentGlumciLista) fm.findFragmentById(R.id.MjestoIspod);
             if (FGL == null) {
                 FGL = new FragmentGlumciLista();
                 Bundle argumentii = new Bundle();
-                argumentii.putParcelableArrayList("Glista", glumci);
+            //    argumentii.putParcelableArrayList("Glista", glumci);
+                argumentii.putParcelableArrayList("Glista",FragmentGlumciLista.glumci);
                 FGL.setArguments(argumentii);
                 fm.beginTransaction().replace(R.id.MjestoIspod, FGL).commit();
             } else {
                 fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            }
+            }*/
+
+            FragmentGlumciLista FGL = new FragmentGlumciLista();
+            Bundle argumentii = new Bundle();
+                //    argumentii.putParcelableArrayList("Glista", glumci);
+            argumentii.putParcelableArrayList("Glista",FragmentGlumciLista.glumci);
+            FGL.setArguments(argumentii);
+            fm.beginTransaction().replace(R.id.MjestoIspod, FGL).commit();
+
+
         }
 
     }
 
     @Override
-    public void onItemClicked(int pos){
+    public void onItemClicked(Glumac m) {
 
-        Bundle arguments=new Bundle();
-        arguments.putParcelable("glumac",glumci.get(pos));
+        Bundle arguments = new Bundle();
+        arguments.putParcelable("glumac", m);
         FragmentOGlumcu fd = new FragmentOGlumcu();
 
-
-
-        if(siriL) {
-            arguments.putString("layout","siroki");
+        if (siriL) {
+            arguments.putString("layout", "siroki");
             fd.setArguments(arguments);
             getFragmentManager().beginTransaction().replace(R.id.desniSirokiFrameLayout, fd).addToBackStack(null).commit();
-        }else{
+        } else {
             fd.setArguments(arguments);
             getFragmentManager().beginTransaction().replace(R.id.MjestoIspod, fd).addToBackStack(null).commit();
         }
@@ -122,12 +154,30 @@ public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(siriL) {
+        if (siriL) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void staviPrvogGlumca() {
+        if (siriL) {
+            FragmentManager fm = getFragmentManager();
+            FragmentOGlumcu fog;
+            fog = (FragmentOGlumcu) fm.findFragmentById(R.id.desniSirokiFrameLayout);
+            Bundle arguments = new Bundle();
+            //  arguments.putParcelable("glumac",glumci.get(0));
+            if(FragmentGlumciLista.getGlumci().size()!=0)arguments.putParcelable("glumac", FragmentGlumciLista.getGlumci().get(0));
+            arguments.putString("layout", "siroki");
+            fog = new FragmentOGlumcu();
+            fog.setArguments(arguments);
+            fm.beginTransaction().replace(R.id.desniSirokiFrameLayout, fog).commit();
+
+        }
+
     }
 }
 

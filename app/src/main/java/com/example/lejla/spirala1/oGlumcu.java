@@ -11,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import static com.example.lejla.spirala1.R.id.imageView;
+
 /**
  * Created by Lejla on 21.03.2017..
  **/
@@ -57,7 +61,10 @@ public class oGlumcu extends AppCompatActivity {
 
         String s = getIntent().getStringExtra("slika");
         ImageView slika = (ImageView)findViewById(R.id.imageView);
-        slika.setImageResource(this.getResources().getIdentifier("com.example.lejla.spirala1:drawable/" + s, null, null));
+        Picasso.with(this).load(getIntent().getStringExtra("slika")).resize(100, 100).into((ImageView)findViewById(R.id.imageView));
+
+
+    //    slika.setImageResource(this.getResources().getIdentifier("com.example.lejla.spirala1:drawable/" + s, null, null));
 
         ib = (ImageButton)findViewById(R.id.imageButtonShare);
 

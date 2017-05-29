@@ -20,6 +20,15 @@ public class Glumac implements Parcelable {
     private String imbdLink;
     private String rating;
 
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    private String ID;
     protected Glumac(Parcel in){
         this.ime = in.readString();
         this.prezime = in.readString();
