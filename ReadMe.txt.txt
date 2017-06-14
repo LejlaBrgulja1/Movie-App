@@ -31,3 +31,13 @@
 +++++ Zadatak 5 - cijeli zadatak je uradjen
 +++++ Nije urağeno:
 +++++ sve je urağeno
++++++
++++++
++++++ Spirala 4
++++++ Urağeno: 
++++++ Zadatak 1 - cijeli zadatak je uradjen
++++++ Zadatak 2 - cijeli zadatak je uradjen
++++++ Zadatak 3 - cijeli zadatak je uradjen
++++++ Zadatak 4 - cijeli zadatak je uradjen
++++++ Nije urağeno:
++++++ 4.c nije urağeno kreiranje kalendara
