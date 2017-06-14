@@ -38,28 +38,40 @@ public class FragmentZanroviLista extends Fragment implements  MojResultReceiver
         //http://api.themoviedb.org/3/discover/movie?api_key=75ec4e2cf73234b17d61036c619d8f62&with_cast=62&sort_by=primary_release_date.desc
         //62 je id glumca
         lv.setAdapter(null);
-        if(FragmentGlumciLista.ID_GLUMCA==""){}
-        else if(stari!=FragmentGlumciLista.ID_GLUMCA || stari==null) {
-            if(stari==null)stari=FragmentGlumciLista.ID_GLUMCA;
-            stari=FragmentGlumciLista.ID_GLUMCA;
-            if (FragmentGlumciLista.ID_GLUMCA != null) {
-                running=true;
-                Intent intent = new Intent(Intent.ACTION_SYNC, null, getActivity(), ServisZanr.class);
-                mReceiver = new MojResultReceiver(new Handler());
-                mReceiver.setReceiver(FragmentZanroviLista.this);
-                String s = "";
-                try {
-                    s = URLEncoder.encode(FragmentGlumciLista.ID_GLUMCA, "utf-8");
-                } catch (UnsupportedEncodingException e) {
-                }
-                intent.putExtra("url", "http://api.themoviedb.org/3/discover/movie?api_key=75ec4e2cf73234b17d61036c619d8f62&with_cast=" + s + "&sort_by=primary_release_date.desc");
-                intent.putExtra("receiver", mReceiver);
-                getActivity().startService(intent);
-            }
-        }else if(stari==FragmentGlumciLista.ID_GLUMCA){
+
+        if(FragmentGlumciLista.CITANJE_IZ_BAZE==true){
+            DBOpenHelper mdbo=new DBOpenHelper(getActivity(), DBOpenHelper.DATABASE_NAME, null, DBOpenHelper.DATABASE_VERSION);
+            ArrayList<Zanr> rezultat = mdbo.getAllZanrovi(FragmentGlumciLista.ID_GLUMCA);
+            zanrovi=rezultat;
             ZanrAdapter aa = new ZanrAdapter(getActivity(), zanrovi);
             lv.setAdapter(aa);
             lv.deferNotifyDataSetChanged();
+
+        }else {
+
+            if (FragmentGlumciLista.ID_GLUMCA == "") {
+            } else if (stari != FragmentGlumciLista.ID_GLUMCA || stari == null) {
+                if (stari == null) stari = FragmentGlumciLista.ID_GLUMCA;
+                stari = FragmentGlumciLista.ID_GLUMCA;
+                if (FragmentGlumciLista.ID_GLUMCA != null) {
+                    running = true;
+                    Intent intent = new Intent(Intent.ACTION_SYNC, null, getActivity(), ServisZanr.class);
+                    mReceiver = new MojResultReceiver(new Handler());
+                    mReceiver.setReceiver(FragmentZanroviLista.this);
+                    String s = "";
+                    try {
+                        s = URLEncoder.encode(FragmentGlumciLista.ID_GLUMCA, "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                    }
+                    intent.putExtra("url", "http://api.themoviedb.org/3/discover/movie?api_key=75ec4e2cf73234b17d61036c619d8f62&with_cast=" + s + "&sort_by=primary_release_date.desc");
+                    intent.putExtra("receiver", mReceiver);
+                    getActivity().startService(intent);
+                }
+            } else if (stari == FragmentGlumciLista.ID_GLUMCA) {
+                ZanrAdapter aa = new ZanrAdapter(getActivity(), zanrovi);
+                lv.setAdapter(aa);
+                lv.deferNotifyDataSetChanged();
+            }
         }
     }
 

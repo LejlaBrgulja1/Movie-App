@@ -1,11 +1,17 @@
 package com.example.lejla.spirala1;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
+import android.provider.CalendarContract;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,11 +28,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick, FragmentGlumciLista.StaviPrvogGlumca {
-
+public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick, FragmentGlumciLista.StaviPrvogGlumca, FragmentFilmoviLista.OnFilmClick {
+    int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR=0;
 
     public void setGlumci(ArrayList<Glumac> glumci) {
         this.glumci = glumci;
@@ -45,17 +53,27 @@ public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick
     ArrayList<Zanr> zanrovi;
     Podaci p = new Podaci();
     Boolean siriL = false;
-
+    static boolean postoji_kalendar=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Stetho.initializeWithDefaults(this);
+
+      //  DBOpenHelper mdbo=new DBOpenHelper(this, DBOpenHelper.DATABASE_NAME, null, DBOpenHelper.DATABASE_VERSION);
+      //  mdbo.obrisiSve();
+
         setContentView(R.layout.activity_pocetna);
         glumci = p.getGlumci();
         reziseri = p.getReziseri();
         zanrovi = p.getZanrovi();
 
-        FragmentManager fm = getFragmentManager();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_CALENDAR}, MY_PERMISSIONS_REQUEST_WRITE_CALENDAR);
+        }
+
+            FragmentManager fm = getFragmentManager();
         FrameLayout sirokiDugmici = (FrameLayout) findViewById(R.id.dugmiciSirokiFrameLayout);
 
         if (sirokiDugmici != null) {
@@ -178,6 +196,19 @@ public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick
 
         }
 
+    }
+
+    @Override
+    public void onFilmClicked(Film m) {
+        Bundle arguments = new Bundle();
+        arguments.putParcelable("film", m);
+        FragmentOFilmu fd = new FragmentOFilmu();
+
+        if (siriL) {
+        } else {
+            fd.setArguments(arguments);
+            getFragmentManager().beginTransaction().replace(R.id.MjestoIspod, fd).addToBackStack(null).commit();
+        }
     }
 }
 

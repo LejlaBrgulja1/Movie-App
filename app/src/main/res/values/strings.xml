@@ -3,11 +3,16 @@
     <string name="button1_pocetna">ACTORS</string>
     <string name="button2_pocetna">DIRECTORS</string>
     <string name="button3_pocetna">GENRES</string>
+    <string name="button4_pocetna">MOVIES</string>
     <string name="button1_500dp_layout">ACTORS</string>
     <string name="button2_500dp_layout">OTHER</string>
     <drawable name="zastava">@drawable/uk_flag</drawable>
     <string name="button_share">SHARE</string>
     <string name="tekst_dijeljenja">Share via</string>
     <string name="spol">Sex: </string>
+    <string name="spasi">SAVE</string>
     <string name="trazi">Search</string>
+    <string name="dodajUBookmarks">Add to BOOKMARKS</string>
+    <string name="brisiIzBookmarks">Remove from BOOKMARKS</string>
+    <string name="detaljiFilmovi">Add details:</string>
 </resources>

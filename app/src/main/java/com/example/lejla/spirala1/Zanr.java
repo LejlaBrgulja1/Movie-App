@@ -10,6 +10,18 @@ import android.os.Parcelable;
 public class Zanr implements Parcelable {
     private String naziv;
     private String slika;
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    private String ID;
+    public Zanr(){
+
+    }
 
     public Zanr(String naziv, String slika) {
         this.naziv = naziv;

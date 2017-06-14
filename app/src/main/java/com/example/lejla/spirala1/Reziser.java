@@ -10,7 +10,17 @@ import android.os.Parcelable;
 public class Reziser  implements Parcelable {
     private String ime;
     private String prezime;
+    private String ID;
+    public String getID() {
+        return ID;
+    }
 
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+
+    public Reziser(){}
     public Reziser(String ime, String prezime) {
         this.ime = ime;
         this.prezime = prezime;

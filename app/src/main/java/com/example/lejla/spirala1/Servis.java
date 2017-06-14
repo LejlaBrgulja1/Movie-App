@@ -127,6 +127,16 @@ public class Servis extends IntentService {
              //   Glumac m = new Glumac(name,"", "1980", "2010", "nema",rating.toString()," biografije","glumica2","https://google.com","biografija");
                 glumci.add(m);
             }
+            DBOpenHelper mdbo=new DBOpenHelper(getApplicationContext(), DBOpenHelper.DATABASE_NAME, null, DBOpenHelper.DATABASE_VERSION);
+            ArrayList<Glumac> prikazi = mdbo.getAllGlumci();
+
+            for (Glumac g: glumci
+                 ) {
+                for (Glumac p: prikazi
+                     ) {
+                    if(g.getID().equals(p.getID())) g.setBookmarked(true);
+                }
+            }
             rez=glumci;
             return rez;
         }catch(MalformedURLException e){

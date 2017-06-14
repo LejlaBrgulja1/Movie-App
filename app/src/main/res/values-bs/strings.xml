@@ -4,11 +4,16 @@
     <string name="button1_pocetna">GLUMCI</string>
     <string name="button2_pocetna">REŽISERI</string>
     <string name="button3_pocetna">ŽANROVI</string>
+    <string name="button4_pocetna">FILMOVI</string>
     <string name="button1_500dp_layout">GLUMCI</string>
     <string name="button2_500dp_layout">OSTALO</string>
     <drawable name="zastava">@drawable/bih_flag</drawable>
     <string name="button_share">PODIJELI</string>
     <string name="tekst_dijeljenja">Podijeli preko</string>
+    <string name="spasi">SPASI</string>
     <string name="spol">Spol: </string>
     <string name="trazi">Trazi</string>
+    <string name="dodajUBookmarks">Dodaj u BOOKMARKS</string>
+    <string name="brisiIzBookmarks">Ukloni iz BOOKMARKS</string>
+    <string name="detaljiFilmovi">Unesite detalje:</string>
 </resources>

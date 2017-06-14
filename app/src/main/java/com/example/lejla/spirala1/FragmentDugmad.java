@@ -35,7 +35,7 @@ public class FragmentDugmad extends Fragment {
     ArrayList<Glumac> glumci;
     ArrayList<Reziser> reziseri;
     ArrayList<Zanr> zanrovi;
-
+    ArrayList<Film> filmovi;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -46,26 +46,14 @@ public class FragmentDugmad extends Fragment {
         Button dugmeGlumci=(Button)iv.findViewById(R.id.button1);
         Button dugmeReziseri=(Button)iv.findViewById(R.id.button2);
         Button dugmeZanrovi=(Button)iv.findViewById(R.id.button3);
+        Button dugmeFilmovi=(Button)iv.findViewById(R.id.button4);
+    //    glumci=p.getGlumci();
+    //    reziseri = p.getReziseri();
+      //  zanrovi = p.getZanrovi();
 
-        glumci=p.getGlumci();
-        reziseri = p.getReziseri();
-        zanrovi = p.getZanrovi();
 
 
 
-        dugmeGlumci.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                FragmentManager fm=getFragmentManager();
-                FragmentGlumciLista fgl = new FragmentGlumciLista();
-                Bundle argumenti=new Bundle();
-                argumenti.putParcelableArrayList("Glista",glumci);
-                fgl.setArguments(argumenti);
-                //fm.beginTransaction().replace(R.id.MjestoIspod,fgl).addToBackStack(null).commit();
-                fm.beginTransaction().replace(R.id.MjestoIspod,fgl).commit();
-             //   fm.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            }
-        });
 
         dugmeReziseri.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -97,7 +85,20 @@ public class FragmentDugmad extends Fragment {
 
             }
         });
+        dugmeFilmovi.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                FragmentManager fm=getFragmentManager();
+                FragmentFilmoviLista fzl = new FragmentFilmoviLista();
+                Bundle argumenti=new Bundle();
+                argumenti.putParcelableArrayList("Flista",filmovi);
+                fzl.setArguments(argumenti);
+                // fm.beginTransaction().replace(R.id.MjestoIspod,fzl).addToBackStack(null).commit();
+                fm.beginTransaction().replace(R.id.MjestoIspod,fzl).commit();
+                //  fm.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
+            }
+        });
         return iv;
     }
     @Override

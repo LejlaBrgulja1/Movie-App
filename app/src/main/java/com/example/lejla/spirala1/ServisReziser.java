@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class ServisReziser extends IntentService{
         public static int STATUS_RUNNING=1;
-        public static int STATUS_FINISHED=0;
+        public static int STATUS_FINISHED=3;
         public static int STATUS_ERROR=2;
 
         public ServisReziser(){
@@ -117,14 +117,22 @@ public class ServisReziser extends IntentService{
 
                     for(int j=0;j<crew.length(); j++) {
                         JSONObject radnik = crew.getJSONObject(j);
-                        if(radnik.getString("job").equals("Director"))pomocni.add(new Reziser(radnik.getString("name"),""));
+                        Reziser r =new Reziser(radnik.getString("name"),"");
+                        r.setID(( String.valueOf(radnik.getInt("id"))));
+                        if(radnik.getString("job").equals("Director"))pomocni.add(r);
 
                     }
 
 
                     for (Reziser p: pomocni
                             ) {
-                        if( !nazivi.contains(p.getIme()) && k<7){ nazivi.add(p.getIme()); reziseri.add(new Reziser(p.getIme(),"")); k++;}
+                        if( !nazivi.contains(p.getIme()) && k<7){
+                            nazivi.add(p.getIme());
+                            Reziser pp = new Reziser(p.getIme(),"");
+                            pp.setID(p.getID());
+                            reziseri.add(pp);
+                            k++;
+                        }
                     }
                     //Zanr m = new Zanr();
 
