@@ -47,10 +47,10 @@ public class FragmentDugmad extends Fragment {
         Button dugmeReziseri=(Button)iv.findViewById(R.id.button2);
         Button dugmeZanrovi=(Button)iv.findViewById(R.id.button3);
         Button dugmeFilmovi=(Button)iv.findViewById(R.id.button4);
-    //    glumci=p.getGlumci();
-    //    reziseri = p.getReziseri();
-      //  zanrovi = p.getZanrovi();
-
+        glumci=p.getGlumci();
+        reziseri = p.getReziseri();
+        zanrovi = p.getZanrovi();
+        filmovi=new ArrayList<Film>();
 
 
 
@@ -92,6 +92,21 @@ public class FragmentDugmad extends Fragment {
                 FragmentFilmoviLista fzl = new FragmentFilmoviLista();
                 Bundle argumenti=new Bundle();
                 argumenti.putParcelableArrayList("Flista",filmovi);
+                fzl.setArguments(argumenti);
+                // fm.beginTransaction().replace(R.id.MjestoIspod,fzl).addToBackStack(null).commit();
+                fm.beginTransaction().replace(R.id.MjestoIspod,fzl).commit();
+                //  fm.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+            }
+        });
+
+        dugmeGlumci.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                FragmentManager fm=getFragmentManager();
+                FragmentGlumciLista fzl = new FragmentGlumciLista();
+                Bundle argumenti=new Bundle();
+                argumenti.putParcelableArrayList("Glista",glumci);
                 fzl.setArguments(argumenti);
                 // fm.beginTransaction().replace(R.id.MjestoIspod,fzl).addToBackStack(null).commit();
                 fm.beginTransaction().replace(R.id.MjestoIspod,fzl).commit();

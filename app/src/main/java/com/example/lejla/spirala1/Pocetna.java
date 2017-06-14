@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick, FragmentGlumciLista.StaviPrvogGlumca, FragmentFilmoviLista.OnFilmClick {
-    int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR=0;
+
 
     public void setGlumci(ArrayList<Glumac> glumci) {
         this.glumci = glumci;
@@ -69,9 +69,6 @@ public class Pocetna extends Activity implements FragmentGlumciLista.OnItemClick
         zanrovi = p.getZanrovi();
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.WRITE_CALENDAR}, MY_PERMISSIONS_REQUEST_WRITE_CALENDAR);
-        }
 
             FragmentManager fm = getFragmentManager();
         FrameLayout sirokiDugmici = (FrameLayout) findViewById(R.id.dugmiciSirokiFrameLayout);
