@@ -153,6 +153,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         values.put(REZISER_ID_E, idRezisera);
         values.put(GLUMAC_ID_E, idGlumca);
         db.insert(DATABASE_TABLE_EVIDENCIJA_REZISERA, null, values);
+
     }
 
     public ArrayList<Glumac> getAllGlumci() {
@@ -180,7 +181,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 glumci.add(g);
             } while (c.moveToNext());
         }
-
+        c.close();
         return glumci;
     }
 
@@ -201,6 +202,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
                 reziseri.add(g);
             } while (c.moveToNext());
+            c.close();
         }
 
         return reziseri;
@@ -222,6 +224,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
                 zanrovi.add(g);
             } while (c.moveToNext());
+            c.close();
         }
 
         return zanrovi;
@@ -231,8 +234,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_GLUMCI + " WHERE " + GLUMAC_ID +" = " + idGlumca;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
-        if (c.getCount() != 0)return true;
-
+        if (c.getCount() != 0){c.close(); return true;}
+        c.close();
         return false;
     }
 
@@ -240,7 +243,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_ZANROVI + " WHERE " + ZANR_ID +" = " + idZanra;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
-        if (c.getCount() != 0)return true;
+        if (c.getCount() != 0){c.close(); return true;}
+        c.close();
 
         return false;
     }
@@ -250,7 +254,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c.getCount() != 0) return true;
+        if (c.getCount() != 0) {c.close(); return true;}
+        c.close();
         return false;
     }
 
@@ -275,7 +280,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 reziseri.add(g);
             } while (c.moveToNext());
         }
-
+        c.close();
         return reziseri;
     }
 
@@ -299,7 +304,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 zanrovi.add(g);
             } while (c.moveToNext());
         }
-
+        c.close();
         return zanrovi;
     }
 
@@ -329,7 +334,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 g.setRating((c.getString(c.getColumnIndex(GLUMAC_RATING))));
                 glumci.add(g);
             } while (c.moveToNext());
+            c.close();
         }
+
         return glumci;
     }
 
@@ -356,6 +363,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 whereArgs = new String[] { z.getID() };
                 db.delete(DATABASE_TABLE_ZANROVI, whereClause, whereArgs);
             }
+            c.close();
         }
 
         ArrayList<Reziser> reziseri = getAllReziseri();
@@ -368,7 +376,10 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 whereArgs = new String[] { r.getID() };
                 db.delete(DATABASE_TABLE_REZISERI, whereClause, whereArgs);
             }
+            c.close();
         }
 
     }
+
+
 }

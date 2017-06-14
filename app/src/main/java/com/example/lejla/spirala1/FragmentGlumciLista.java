@@ -58,8 +58,9 @@ public class FragmentGlumciLista extends Fragment implements  MojResultReceiver.
             public void onClick(View v) {
                 String search = ((EditText)iv.findViewById(R.id.SearchEditText)).getText().toString();
 
-                if(search.length()>= 8 && search.substring(0,6).equals("actor:")){
-                    String imeGlumca=search.substring(7);
+                if(search.length()>= 7 && search.substring(0,6).equals("actor:")){
+                    String imeGlumca=search.substring(6);
+
                     DBOpenHelper mdbo=new DBOpenHelper(getActivity(), DBOpenHelper.DATABASE_NAME, null, DBOpenHelper.DATABASE_VERSION);
                     ArrayList<Glumac> rezultat = mdbo.getAllGlumci();
                     ArrayList<Glumac> prikazi = new ArrayList<Glumac>();
@@ -76,8 +77,8 @@ public class FragmentGlumciLista extends Fragment implements  MojResultReceiver.
                     lv.deferNotifyDataSetChanged();
                     spg = (Pocetna) getActivity();
                     spg.staviPrvogGlumca();
-                }else if(search.length()>= 9 && search.substring(0,9).equals("director:")){
-                    String imeRezisera=search.substring(10);
+                }else if(search.length()>= 10 && search.substring(0,9).equals("director:")){
+                    String imeRezisera=search.substring(9);
 
                     DBOpenHelper mdbo=new DBOpenHelper(getActivity(), DBOpenHelper.DATABASE_NAME, null, DBOpenHelper.DATABASE_VERSION);
                     ArrayList<Reziser> reziseri=mdbo.getAllReziseri();
@@ -106,7 +107,7 @@ public class FragmentGlumciLista extends Fragment implements  MojResultReceiver.
                     lv.deferNotifyDataSetChanged();
                     spg = (Pocetna) getActivity();
                     spg.staviPrvogGlumca();
-                }else {
+                }else{
                     CITANJE_IZ_BAZE=false;
                     running = true;
                     Intent intent = new Intent(Intent.ACTION_SYNC, null, getActivity(), Servis.class);
